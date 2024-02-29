@@ -1,29 +1,9 @@
 /*******************************************************************************
- * Copyright (C) 2015, Christopher Hill <ch6574@gmail.com>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *******************************************************************************/
+ * Copyright (c) 2015, Christopher Hill <ch6574@gmail.com>
+ * GNU General Public License v3.0+ (see https://www.gnu.org/licenses/gpl-3.0.txt)
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ ******************************************************************************/
 package hillc.restdemo;
-
-import java.io.IOException;
-import java.net.URI;
-import java.util.logging.Logger;
-
-import javassist.bytecode.stackmap.TypeData.ClassName;
-
-import javax.print.attribute.standard.ReferenceUriSchemesSupported;
-import javax.ws.rs.core.UriBuilder;
 
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.ssl.SSLContextConfigurator;
@@ -31,12 +11,17 @@ import org.glassfish.grizzly.ssl.SSLEngineConfigurator;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
+import javax.print.attribute.standard.ReferenceUriSchemesSupported;
+import javax.ws.rs.core.UriBuilder;
+import java.io.IOException;
+import java.net.URI;
+import java.util.logging.Logger;
+
 /**
  * Main server class. Starts HTTP and HTTPS Grizzly servers and registers JAX-RS resources from same package at /rest-demo
- * 
  */
 public class Server {
-    private static final Logger log = Logger.getLogger(ClassName.class.getName());
+    private static final Logger log = Logger.getLogger(Server.class.getName());
 
     // Base URI the Grizzly servers listen on (HTTP and HTTPS)
     public URI serverUri;
@@ -55,10 +40,8 @@ public class Server {
 
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
-     * 
-     * @param port
-     *            Port to start server running on. A value of 0 will result in a random ephemeral port being used
-     * @return Grizzly HTTP server.
+     *
+     * @param port Port to start server running on. A value of 0 will result in a random ephemeral port being used
      */
     public void startServer(int port) {
         // Shut it down if already running
@@ -77,11 +60,8 @@ public class Server {
 
     /**
      * Starts Grizzly HTTPS server exposing JAX-RS resources defined in this application.
-     * 
-     * @param port
-     *            Port to start server running on. A value of 0 will result in a random ephemeral port being used
-     * 
-     * @return Grizzly HTTPS server.
+     *
+     * @param port Port to start server running on. A value of 0 will result in a random ephemeral port being used
      */
     public void startSecureServer(int port) {
         // Shut it down if already running
@@ -118,9 +98,6 @@ public class Server {
 
     /**
      * Main method. Starts http server on port 8080, and starts https server on port 8081.
-     * 
-     * @param args
-     * @throws IOException
      */
     public static void main(String[] args) throws IOException {
         Server server = new Server();
